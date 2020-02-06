@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Quản lí </title>
+	<!-- CHèn CSS chính-->
+	<link rel="stylesheet" type="text/css" href="styleQL.css">
+	<!-- CSS được tối ưu và biên dịch mới nhất -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+	<!-- Thư viện jQuery (dammio.com) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+	<!-- JavaScript biên dịch mới nhất -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="socket.io/socket.io.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.css" />
+	
+
+	
+	
+</head>
+<body onload="OnLoad()">
+	<header style="text-align: center;">
+		<h1 style="display: inline;">Quản lí: <%=User%></h1>
+		<form style="display: inline;" action="/Logout" method="POST"><input type="submit" value="Đăng xuất"></form>
+		<h1 style="display: none" id="Id"><%=id%><h1>
+			
+		</header>
+		<div class="divMain row">
+			<div class="box box1 col-3" style="overflow: auto;">
+				<div id="LichSu">
+					<h3>Lịch sử</h3><hr>
+					<table id="TableLS"> 
+					</table>
+				</div>
+				<div id="GoiMon" style="display: none">
+					<h3>Gọi thức uống</h3><hr>
+					<table id="order" class="order">
+					</table>
+					<a class="btnXong" onclick="Order()">Đã xong</a>
+					<a class="btnHuy" onclick="Cancel()">Hủy</a>
+					
+				</div>
+				<div id="DaGoi" style="display: none">
+					<h3>Thức uống đã gọi</h3><hr>
+					<table id="TinhTien" class="order">					
+					</table>
+					<a class="btnThanhToan" onclick="Pay()">Xác nhận thanh toán</a><br><br>
+					<a class="btnThanhToan" onclick="Print()">In hóa đơn</a>
+					<a class="btnHuy" onclick="Cancel()">Hủy</a>
+				</div>
+			</div>
+			<div class="box box2 col-6">
+				<script type="text/javascript">
+					for (i = 1;i <= 80;i++) document.write('<a id="' + i + '" href="#" class="tableCF">Bàn ' + i + '</a>');
+				</script>
+		</div>
+		<div class="box3 col-3 box">
+			<div id="control">
+				<a href="#" class="btn1 square_btn" onclick="CheckPay()">Thanh toán</a>
+				<a href="#" class="btn2 square_btn" onclick="Add()">Gọi thêm</a>
+				<a href="#" class="btn3 square_btn" onclick="ChangeTable()">Chuyển bàn</a>	
+			</div>
+			<h4 style="display: inline;">Bàn số: </h4><h4 style="display: inline;" id="NumTB">1</h4>
+			<div id="menu">
+				<h4 class="cafe"> Cafe</h4>
+				<a href="#" class="btnThucUong thucUong">Cafe Đen</a>
+				<a href="#" class="btnThucUong thucUong">Cafe Sữa</a>
+				<a href="#" class="btnThucUong thucUong">Cafe Sữa SG</a>
+				<a href="#" class="btnThucUong thucUong">Cafe Rang Xay</a>
+				<a href="#" class="btnThucUong thucUong">Bạc xỉu</a>
+				<a href="#" class="btnThucUong thucUong">Cafe nóng</a>
+				<h4 class="giaiKhat"> Giải khát</h4>
+				<a href="#" class="btnThucUong thucUong">Sting</a>
+				<a href="#" class="btnThucUong thucUong">Pepsi</a>
+				<a href="#" class="btnThucUong thucUong">7 Up</a>
+				<a href="#" class="btnThucUong thucUong">CocaCola</a>
+				<a href="#" class="btnThucUong thucUong">Revice</a>
+				<a href="#" class="btnThucUong thucUong">Nước khoáng</a>
+				<h4 class="khac"> Thức uống khác</h4>
+				<a href="#" class="btnThucUong thucUong">Sửa chua</a>
+				<a href="#" class="btnThucUong thucUong">Cam vắt</a>
+			</div>
+			<div id="ChuyenBan" style="display:none">
+				<div class="select">
+					<select name="slct" id="slct">
+						<option selected disabled value="0">Chọn bàn cần chuyển</option>
+						<script type="text/javascript">
+							for (i = 1;i <= 80;i++){
+								document.write('<option value="' + i + '">Bàn số ' + i + '</option>')
+							}
+						</script>
+
+					</select>
+				</div>
+				<button type="button" class="btn btn-primary" onclick="ChuyenBan()">Chuyển</button>
+			</div>
+
+		</div>
+
+	</div>
+	<script type="text/javascript" src="jsQL.js"></script>
+	<script type="text/javascript" src="notify.js"></script>
+</body>
+</html>

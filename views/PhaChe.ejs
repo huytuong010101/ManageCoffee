@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bộ phận pha chế</title>
+	<script type="text/javascript" src="socket.io/socket.io.js"></script>
+
+</head>
+<body style="text-align: center;">
+	
+	<h2 style="text-align: center;">THỨC UỐNG CẦN PHA CHẾ</h2>
+
+
+	<script type="text/javascript">
+		var socket = io("http://172.20.10.5:80");
+		socket.on("ListDrinking",function(data){
+
+			document.write("<hr>");
+			document.write('<div style="text-align: center;">');
+			document.write("Bàn số: " + data.NumTB + "<br>");
+			document.write(data.str + "<br>");
+			document.write("Thời gian: " + data.Time + "<br>");
+			document.write('</div>');
+
+
+		})
+	</script>
+
+
+	
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nhân viên 001</title>
+	<link rel="stylesheet" type="text/css" href="css/styleNV.css">
+	<script type="text/javascript" src="socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+		document.title = "NV: " + "<%=User%>";
+	</script>
+	
+</head>
+<body onload="OnLoad()">
+	<div style="text-align: center;">
+		<h1 style="display: inline">Nhân viên: <%=User%></h1>
+		<h3 style="display: none" id="id"><%=id%></h3>
+		<form style="display: inline" action="/Logout" method="POST"><input id="Loggout" type="submit" value="Đăng xuất"></form>
+	</div>
+	<div class="table">
+		<script type="text/javascript">
+			for (i = 1;i <= 80;i++){
+				document.write('<a href="#" id="' + i + '" class="tableCF">Bàn ' + i + '</a>');
+				if (i % 5 == 0){
+					document.write('<br>');
+				}
+			}
+
+		</script>
+	</div>
+	<div class="menu">
+		<div>
+			<h3 style="font-size: 300%;display: inline;">Bàn số: </h3><h3 class="TBNum">#</h3>
+		</div>
+		<div class="thanhcuon" id="ChonThucUong" style="display: none;">
+			<h4 class="cafe"> Cafe</h4>
+			<a href="#" class="btnThucUong thucUong" onclick="a()">Cafe Đen</a>
+			<a href="#" class="btnThucUong thucUong">Cafe Sữa</a>
+			<a href="#" class="btnThucUong thucUong">Cafe Sữa SG</a>
+			<a href="#" class="btnThucUong thucUong">Cafe Rang Xay</a>
+			<a href="#" class="btnThucUong thucUong">Bạc xỉu</a>
+			<a href="#" class="btnThucUong thucUong">Cafe nóng</a>
+			<h4 class="giaiKhat"> Giải khát</h4>
+			<a href="#" class="btnThucUong thucUong">Sting</a>
+			<a href="#" class="btnThucUong thucUong">Pepsi</a>
+			<a href="#" class="btnThucUong thucUong">7 Up</a>
+			<a href="#" class="btnThucUong thucUong">CocaCola</a>
+			<a href="#" class="btnThucUong thucUong">Revice</a>
+			<a href="#" class="btnThucUong thucUong">Nước khoáng</a>
+			<h4 class="khac"> Thức uống khác</h4>
+			<a href="#" class="btnThucUong thucUong">Sửa chua</a>
+			<a href="#" class="btnThucUong thucUong">Cam vắt</a>
+			<hr>
+			<br>
+			<table style="overflow-x: auto;" id="order" class="order">
+			</table>
+
+			<a class="btnXong" onclick="Order()">Đã xong</a>
+			<a class="btnHuy" onclick="CancelOrder()">Hủy</a>
+		</div>
+		<div class="thanhcuon" id="DanhSachThucUong" style="display: none">
+			<table id="TinhTien" class="order">
+				
+			</table>
+			<a class="btnXong" onclick="Add()">Gọi thêm</a>
+			<a class="btnHuy" onclick="CancelOrder()">Hủy</a>
+		</div>
+		<script type="text/javascript" src="js/jsNV.js"></script>	
+	</div>
+</body>
+</html>
